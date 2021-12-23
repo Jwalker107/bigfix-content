@@ -79,7 +79,7 @@
 		</MIMEField>
 		<MIMEField>
 			<Name>x-fixlet-modification-time</Name>
-			<Value>Thu, 23 Dec 2021 17:48:36 +0000</Value>
+			<Value>Thu, 23 Dec 2021 18:51:32 +0000</Value>
 		</MIMEField>
 		<MIMEField>
 			<Name>x-relevance-evaluation-period</Name>
@@ -204,8 +204,8 @@ else
     wait {parameter "unzip"} "__Download/jre.tar.gz"
 	wait {parameter "tar" } -xf "__Download/jre.tar" -C "{parameter "JREFolder"}"
 
-  elseif {((exists match (regex "SunOS") of it ) of name of operating system) AND (if exists properties whose(it as string contains "type of <processor>") then (type of main processor as string contains "i386") else false)}
-    // SunOS extraction
+  elseif {exists match (regex "SunOS") of name of operating system}
+    // SunOS extraction for i386 or Sparc
 	// If action stops here we may not have gunzip / unzip available 
 	continue if {parameter "unzip" as trimmed string != ""}
 	
